@@ -5,3 +5,11 @@
 body{
 	background-color: #141414;
 }
+
+.page{
+	@apply ml-2 bg-[#222222] px-4 py-1 hover:bg-[#313131] text-white cursor-pointer
+}
+
+.page_current{
+	@apply bg-[#313131] font-bold
+}

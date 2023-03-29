@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdAccountCircle } from 'react-icons/md';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FaRegCommentDots } from 'react-icons/fa';
 import { RiCloseFill } from 'react-icons/ri';
+import { useSpring, animated } from 'react-spring';
 
 const PostItem = ({post,remove}) => {
 
+	const [show, setShow] = useState(true);
+
+  const props = useSpring({
+    opacity: show ? 1 : 0,
+    transform: show ? 'translateY(0)' : 'translateY(-50px)',
+  });
+
+  const handleDelete = () => {
+    setShow(false);
+    setTimeout(() => {
+      remove(post);
+    }, 500);
+  };
+
 
   return (
-		<div className='flex justify-center items-center  mx-auto'>
+		<animated.div style={props} className='flex justify-center items-center  mx-auto'>
 			<div className="bg-[#222222] rounded-md shadow-md p-4 w-full max-h-[800px] my-10">
 				<div className="flex items-center justify-between">
 					<div className='flex items-center'>
@@ -21,13 +36,12 @@ const PostItem = ({post,remove}) => {
 							<a href='#'>
 								<p className="font-medium text-lg text-[#71aaeb] hover:underline">Admin</p>
 							</a>
-							<p className="text-[#828282] text-sm hover:underline cursor-pointer">{post.date}</p>
 						</div>
 					</div>
 					<div className="relative">
 						<div className="flex items-center justify-between">
 							<RiCloseFill 
-								onClick={() => remove(post)}
+								onClick={handleDelete}
 								className='text-gray-600 cursor-pointer'
 								size={25}
 							/>
@@ -62,7 +76,7 @@ const PostItem = ({post,remove}) => {
 					</a>
 				</div>
 			</div>
-		</div>
+		</animated.div>
   );
 };
 

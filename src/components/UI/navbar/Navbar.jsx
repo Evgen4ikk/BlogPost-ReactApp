@@ -1,0 +1,66 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { FaBlog } from 'react-icons/fa'
+import { MdAccountCircle } from 'react-icons/md'
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <nav className="bg-[#222222] w-full py-2 px-7 flex items-center justify-between">
+      <div className='mx-auto'>
+        <a className="text-white font-bold text-xl">
+          <FaBlog className='text-gray-500 w-10 h-10 mx-auto'/>
+        </a>
+      </div>
+      <div className="relative" ref={menuRef}>
+        <button
+          type="button"
+          className="text-gray-400 focus:outline-none"
+          onClick={handleMenuToggle}
+        >
+          <MdAccountCircle className="w-8 h-8 mx-auto rounded-full aspect-square"/>
+        </button>
+        {isMenuOpen && (
+          <div className="absolute right-0 mt-2 py-2 w-48 bg-[#292929] rounded-md shadow-lg z-10">
+            <a
+              className="block px-4 py-2 text-gray-100 hover:bg-[#3a3a3a] cursor-pointer"
+            >
+              Tasks
+            </a>
+            <a
+              className="block px-4 py-2 text-gray-100 hover:bg-[#3a3a3a] cursor-pointer"
+            >
+              Profile
+            </a>
+            <a
+              className="block px-4 py-2 text-gray-100 hover:bg-[#3a3a3a] cursor-pointer"
+            >
+              Logout
+            </a>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
