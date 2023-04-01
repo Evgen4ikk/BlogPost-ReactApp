@@ -4,11 +4,10 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { FaRegCommentDots } from 'react-icons/fa';
 import { RiCloseFill } from 'react-icons/ri';
 import { useSpring, animated } from 'react-spring';
+import { Link } from 'react-router-dom'
 
-const PostItem = ({post,remove}) => {
-
-	const [show, setShow] = useState(true);
-
+const PostItem = ({post, remove, users}) => {
+	const [show, setShow] = useState(true)
   const props = useSpring({
     opacity: show ? 1 : 0,
     transform: show ? 'translateY(0)' : 'translateY(-50px)',
@@ -34,7 +33,13 @@ const PostItem = ({post,remove}) => {
 						</a>
 						<div>
 							<a href='#'>
-								<p className="font-medium text-lg text-[#71aaeb] hover:underline">Admin</p>
+								<p className="font-medium text-lg text-[#71aaeb] hover:underline">
+								{users.map((user) => (
+									post.userId === user.id ? (
+										<span key={user.id}>{user.name}</span>
+									) : <React.Fragment key={user.id}></React.Fragment>
+								))}
+								</p>	
 							</a>
 						</div>
 					</div>
@@ -70,10 +75,13 @@ const PostItem = ({post,remove}) => {
 						<AiOutlineHeart className='text-[#b2b2b2] w-6 h-6 mr-2'/>
 						<span className='text-[#939393]'>0</span>
 					</button>
-					<a href='#' className='flex bg-[#333333] py-2 px-4 rounded-[32px] hover:bg-[#3f3f3f]'>
+					<Link
+						to={(`/posts/${post.id}`)} 
+						className='flex bg-[#333333] py-2 px-4 rounded-[32px] hover:bg-[#3f3f3f]'
+					>
 						<FaRegCommentDots className='text-[#b2b2b2] w-5 h-5 mr-2 mt-[2px]'/>
 						<span className='text-[#939393]'>0</span>
-					</a>
+					</Link>
 				</div>
 			</div>
 		</animated.div>

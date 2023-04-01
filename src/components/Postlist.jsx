@@ -2,8 +2,8 @@ import React from 'react';
 import PostItem from './PostItem';
 import { useSpring, animated } from 'react-spring';
 
-const Postlist = ({ posts, remove }) => {
-	
+const Postlist = ({posts, remove, users}) => {
+
   const props = useSpring({
 		opacity: 1,
 		from: { opacity: 0 },
@@ -21,7 +21,11 @@ const Postlist = ({ posts, remove }) => {
     <div>
       {posts.map((post) => (
       <animated.div key={post.id} style={props}>
-        <PostItem remove={remove} post={post} />
+        <PostItem 
+          remove={remove} 
+          post={post} 
+          users={users}
+        />
       </animated.div>
       ))}
     </div>
