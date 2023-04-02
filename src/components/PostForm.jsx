@@ -1,17 +1,29 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MyButton from './UI/button/MyButton'
 import MyInput from './UI/input/MyInput'
+import { AuthContext } from '../context/context'
 
 const PostForm = ({create}) => {
-  const [post, setPost] = useState({title: '', body: '' , picture: ''})
+  const { userInfo } = useContext(AuthContext)
+  const [picture, setPicture] = useState('');
+  const [post, setPost] = useState({
+		username: userInfo.username,
+		status: 'myPost',
+		title: '',
+		body: '',
+		image: '',
+	})
 
   const addNewPost = (e) => {
     e.preventDefault();
     const newPost = {
-      ...post, id: Date.now()
+      ...post,
+      id: Date.now(),
+      picture: picture
     }
     create(newPost)
-    setPost({title: '', body: '' , picture: ''})
+    setPost({ userId: userInfo.username, status:'myPost', title: '', body: '', image: '' })
+    setPicture('');
   }
 
   return (
@@ -30,8 +42,8 @@ const PostForm = ({create}) => {
           placeholder='Post Description'
         />
         <MyInput 
-          value={post.picture}
-          onChange={e => setPost({...post, picture:e.target.value})}
+          value={picture}
+          onChange={e => setPicture(e.target.value)}
           type='text' 
           placeholder='Link to picture'
         />

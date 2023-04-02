@@ -11,7 +11,7 @@ export const privateRoutes = [
 	{path: '/profile', element: <Profile/> , exact: true},
 	{path: '/login', element: <Login/> , exact: true},
 	{path: '/posts/:id', element: <PostPage/> , exact: true},
-	{path: '/user/:id', element: <UserProfile/> , exact: true},
+	{path: '/profile/user/:id', element: <UserProfile/> , exact: true},
 	{path: '/', element: <Error/> , exact: true},
 ]
 

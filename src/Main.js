@@ -7,6 +7,16 @@ import { AuthContext } from './context/context'
 function Main() {
 
   const [isAuth, setIsAuth] = useState(false);
+	const [userInfo, setUserInfo] = useState({
+		name: 'Evgeniy',
+		surname: 'Rybin',
+		avatar: '',
+		username: 'Evgeniy',
+		status: 'user',
+		age: 18,
+		email: '8evgentys8@mail.ru',
+		tel: '+7-952-886-19-83',
+	})``
 
 	useEffect(()=>{
 		if(localStorage.getItem('auth')){
@@ -16,6 +26,8 @@ function Main() {
 	
 	return (
 		<AuthContext.Provider value={{
+			setUserInfo,
+			userInfo,
 			isAuth,
 			setIsAuth
 		}}>
