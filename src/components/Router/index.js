@@ -12,7 +12,7 @@ export const privateRoutes = [
 	{path: '/login', element: <Login/> , exact: true},
 	{path: '/posts/:id', element: <PostPage/> , exact: true},
 	{path: '/profile/users/:id', element: <UserProfile/> , exact: true},
-	{path: '/', element: <Error/> , exact: true},
+	{path: '/*', element: <Error/> , exact: true},
 ]
 
 export const publicRoutes = [

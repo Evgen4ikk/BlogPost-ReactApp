@@ -1,3 +1,6 @@
+# Blog
+![](/preview.png)
+
 ## Getting start
 ```
 npm install 
