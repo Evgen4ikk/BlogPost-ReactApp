@@ -58,6 +58,9 @@ const PostPage = () => {
 											))}
 											</p>	
 										</Link>
+										<p className="text-sm text-gray-400 cursor-pointer hover:underline">
+											27 Mar at 0:15
+										</p>
 									</div>
 								</div>
 							</div>
@@ -107,7 +110,7 @@ const PostPage = () => {
 														</div>
 														<div className='text-gray-400 text-[14px] flex justify-between items-center'>
 															<span>
-																29 мар в 11:39
+																29 Mar at 11:39
 															</span>
 															<div className=''>
 																<LikeComm/>

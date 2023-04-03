@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FiPlusCircle } from 'react-icons/fi'
 import PostService from '../../API/PostService'
 import { useFetching } from '../../components/hooks/useFetching'
@@ -10,6 +10,7 @@ import Loader from '../../components/UI/Loader/Loader'
 import MyModal from '../../components/UI/MyModal/MyModal'
 import Pagination from '../../components/UI/pagination/Pagination'
 import { getPageCount } from '../../utils/pages'
+import { useObserver } from '../../components/hooks/useObserver'
 
 function Main() {
   const [posts,setPosts] = useState([]);
@@ -19,12 +20,13 @@ function Main() {
   const [totalPages, setTotalPages] = useState(0)
   const [limit, setLimit] = useState(10)
   const [page, setPage] = useState(1)
+  const lastElement = useRef()
 
   const sortedAndSearchedPosts = usePosts(posts,filter.sort, filter.query)
 
   const [fetchPosts, isPostsLoading, postError] = useFetching( async (limit,page) => {
     const response = await PostService.getAllPosts(limit, page);
-    setPosts(response.data)
+    setPosts([...posts, ...response.data])
     const totalCount = (response.headers['x-total-count'])
     setTotalPages(getPageCount(totalCount, limit))
   })
@@ -34,10 +36,15 @@ function Main() {
     setUsers(response.data);
   });
 
+  useObserver(lastElement, page < totalPages, isPostsLoading, () => {
+    setPage( page + 1);
+  })
+
   useEffect(() => {
     fetchPosts(limit,page)
     fetchUsers();
-  }, [])
+  }, [page])
+
 
   const createPost = (newPost) => {
     setPosts([newPost,...posts])
@@ -50,7 +57,6 @@ function Main() {
 
   const changePage = (page) => {
     setPage(page)
-    fetchPosts(limit,page)
   }
 
   return (
@@ -70,17 +76,14 @@ function Main() {
         {postError &&
           <h1>Error ${postError}</h1>
         }
-        {isPostsLoading
-          ? 
-            <Loader />
-          : 
-            <Postlist posts={sortedAndSearchedPosts}  remove={removePost} users={users}/>
-        }
-        <Pagination 
+        <Postlist posts={sortedAndSearchedPosts} remove={removePost} users={users}/>
+        <div ref={lastElement}/>
+        {isPostsLoading && <Loader /> }
+        {/* <Pagination 
           page={page} 
           changePage={changePage} 
           totalPages={totalPages}
-        />
+        /> */}
       </div>
     </div>
   );

@@ -39,6 +39,10 @@ const PostItem = ({post, remove, users}) => {
 										<p className="font-medium text-lg text-[#71aaeb] hover:underline">
 											{userInfo.username} {userInfo.surname}
 										</p>	
+										<p
+											className="cursor-pointer text-sm text-gray-400 hover:underline">
+											27 Mar at 0:15
+										</p>	
 									</a>
 								</div>
 							</div>
@@ -100,6 +104,11 @@ const PostItem = ({post, remove, users}) => {
 											) : <React.Fragment key={user.id}></React.Fragment>
 										))}
 										</p>	
+									</Link>
+									<Link
+										to={(`/posts/${post.id}`)} 
+										className="text-sm text-gray-400 cursor-pointer hover:underline">
+										27 Mar at 0:15
 									</Link>
 								</div>
 							</div>
