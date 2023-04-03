@@ -1,4 +1,4 @@
-# Blog
+# BlogPost
 ![](/preview.png)
 
 ## Getting start
