@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from '.';
-import { AuthContext } from '../../context/context';
-import Error from '../../pages/Error';
-import Login from '../../pages/Login';
-import Posts from '../../pages/Posts';
+import React, { useContext } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { privateRoutes, publicRoutes } from '.'
+import { AuthContext } from '../../context/context'
+import Error from '../../pages/Error/Error'
+import Login from '../../pages/Login/Login'
+import Posts from '../../pages/Posts/Posts'
 
 const Router = () => {
 	const {isAuth} = useContext(AuthContext);

@@ -10,13 +10,13 @@ function Main() {
 	const [userInfo, setUserInfo] = useState({
 		name: 'Evgeniy',
 		surname: 'Rybin',
-		avatar: '',
+		avatar: 'https://sun9-37.userapi.com/impg/ujwvgRL91_C1-FOmvRqFzCCm739I17nlEXn5Vw/Nb2ru4hg2bA.jpg?size=656x656&quality=96&sign=ee91a7582edcd6bc4a308b631a59c9b0&type=album',
 		username: 'Evgeniy',
-		status: 'user',
-		age: 18,
 		email: '8evgentys8@mail.ru',
-		tel: '+7-952-886-19-83',
-	})``
+		phone: '+7-952-886-19-83',
+		university: 'Tomsk State University of Control Systems and Radioelectronics',
+		country: 'Russia, Tomsk'
+	})
 
 	useEffect(()=>{
 		if(localStorage.getItem('auth')){

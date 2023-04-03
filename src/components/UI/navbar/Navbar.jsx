@@ -57,7 +57,7 @@ const Navbar = () => {
               Tasks
             </Link>
             <Link
-              to='/profile'
+              to='/myProfile'
               className="block px-4 py-2 text-gray-100 hover:bg-[#3a3a3a] cursor-pointer"
             >
               Profile

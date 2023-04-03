@@ -32,14 +32,12 @@ const PostItem = ({post, remove, users}) => {
 						<div className="flex items-center justify-between">
 							<div className='flex items-center'>
 								<div>
-									<MdAccountCircle
-										className="text-[#a3b5c5] mr-2 w-12 h-12 cursor-pointer"
-									/>
+									<img src={userInfo.avatar} alt="" className="w-12 h-12 rounded-full dark:bg-gray-500 aspect-square mr-2" />
 								</div>
 								<div>
 									<a href='#'>
 										<p className="font-medium text-lg text-[#71aaeb] hover:underline">
-											{userInfo.username}
+											{userInfo.username} {userInfo.surname}
 										</p>	
 									</a>
 								</div>
@@ -88,13 +86,13 @@ const PostItem = ({post, remove, users}) => {
 				:	<div className="bg-[#222222] rounded-md shadow-md p-4 w-full max-h-[800px] my-10">
 						<div className="flex items-center justify-between">
 							<div className='flex items-center'>
-								<Link to={(`/profile/user/${post.userId}`)}>
+								<Link to={(`/profile/users/${post.userId}`)}>
 									<MdAccountCircle
 										className="text-[#a3b5c5] mr-2 w-12 h-12"
 									/>
 								</Link>
 								<div>
-									<Link to={(`/profile/user/${post.userId}`)}>
+									<Link to={(`/profile/users/${post.userId}`)}>
 										<p className="font-medium text-lg text-[#71aaeb] hover:underline">
 										{users.map((user) => (
 											post.userId === user.id ? (

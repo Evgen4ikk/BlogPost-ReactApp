@@ -28,8 +28,4 @@ export default class PostService {
 		const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)
 		return response
 	}
-	static async getPhoto(id) {
-		const response = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`)
-		return response
-	}
 }

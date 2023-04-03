@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { AiOutlineHeart } from 'react-icons/ai'
 import { MdAccountCircle } from 'react-icons/md'
-import { useParams } from 'react-router-dom'
-import PostService from '../API/PostService'
-import { useFetching } from '../components/hooks/useFetching'
-import Like from '../components/UI/like/Like'
-import LikeComm from '../components/UI/likeComm/LikeComm'
-import Loader from '../components/UI/Loader/Loader'
+import { Link, useParams } from 'react-router-dom'
+import PostService from '../../API/PostService'
+import { useFetching } from '../../components/hooks/useFetching'
+import Like from '../../components/UI/like/Like'
+import LikeComm from '../../components/UI/likeComm/LikeComm'
+import Loader from '../../components/UI/Loader/Loader'
 
 const PostPage = () => {
 	const params = useParams()
@@ -44,13 +43,13 @@ const PostPage = () => {
 						<div className='p-5'>
 							<div className="flex items-center justify-between">
 								<div className='flex items-center'>
-									<a href='#'>
+								<Link to={(`/profile/users/${post.userId}`)}>
 										<MdAccountCircle
 											className="text-[#a3b5c5] mr-2 w-12 h-12"
 										/>
-									</a>
+									</Link>
 									<div>
-										<a href='#'>
+									<Link to={(`/profile/users/${post.userId}`)}>
 											<p className="font-medium text-lg text-[#71aaeb] hover:underline">
 											{users.map((user) => (
 												post.userId === user.id ? (
@@ -58,7 +57,7 @@ const PostPage = () => {
 												) : <React.Fragment key={user.id}></React.Fragment>
 											))}
 											</p>	
-										</a>
+										</Link>
 									</div>
 								</div>
 							</div>
